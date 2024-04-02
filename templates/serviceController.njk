@@ -1,10 +1,12 @@
 // @ts-ignore
 /* eslint-disable */
 {{ requestImportStatement }}
+{% if namespace !== undefined %}
+import  { {{namespace}} } from "./models";
+{% else %}
 import  { Models } from "./models";
-
+{% endif %}
 export class {{className}}Service {
-
 {% for api in list -%}
 /** {{ api.desc if api.desc else '此处后端没有提供注释' }} {{api.method | upper}} {{ api.pathInComment | safe }} */
 static async {{ api.functionName }}(
